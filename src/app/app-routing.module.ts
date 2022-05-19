@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: () => import(/* webpackChunkName: "authModule" */ './auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'heroes',
+    loadChildren: () => import(/* webpackChunkName: "heroesModule" */ './heroes/heroes.module').then(m => m.HeroesModule)
+  },
+  {
     path: '404',
     component: ErrorPageComponent
   },
