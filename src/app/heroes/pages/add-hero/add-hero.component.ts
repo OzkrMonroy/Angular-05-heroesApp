@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-hero',
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddHeroComponent implements OnInit {
 
-  constructor() { }
+  constructor( private activatedRoute: ActivatedRoute ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe({
+      next: (params) => {
+        console.log({params});
+      }
+    })
   }
 
 }

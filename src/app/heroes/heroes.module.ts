@@ -10,6 +10,8 @@ import { DetailComponent } from './pages/detail/detail.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ListComponent } from './pages/list/list.component';
 import { MaterialModule } from '../material/material.module';
+import { HeroCardComponent } from './components/hero-card/hero-card.component';
+import { ImagePipe } from './pipes/image.pipe';
 
 
 
@@ -19,7 +21,9 @@ import { MaterialModule } from '../material/material.module';
     SearchComponent,
     DetailComponent,
     HomeComponent,
-    ListComponent
+    ListComponent,
+    HeroCardComponent,
+    ImagePipe,
   ],
   imports: [
     CommonModule,
