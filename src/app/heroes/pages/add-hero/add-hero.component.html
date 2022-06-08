@@ -1,1 +1,53 @@
-<p>add-hero works!</p>
+<h1>New hero: <small>{{ hero.superhero }}</small></h1>
+<div fxLayout='row' fxLayout.xs="column" fxLayoutGap='40px'>
+  <div fxFlex='50' fxLayout='column'>
+    <div fxLayout='row' fxLayout.xs="column" fxLayoutGap='20px'>
+      <!-- Super hero name -->
+      <mat-form-field fxFlex='100'>
+        <mat-label>Super hero</mat-label>
+        <input type="text" required matInput [(ngModel)]='hero.superhero'>
+      </mat-form-field>
+      <!-- Super hero name -->
+      <!-- Alter ego -->
+      <mat-form-field fxFlex='100'>
+        <mat-label>Alter ego</mat-label>
+        <input type="text" required matInput [(ngModel)]='hero.alter_ego'>
+      </mat-form-field>
+      <!-- Alter ego -->
+    </div>
+    <!-- First apparition -->
+    <mat-form-field>
+      <mat-label>First apparition</mat-label>
+      <input type="text" required matInput [(ngModel)]='hero.first_appearance'>
+    </mat-form-field>
+    <!-- First apparition -->
+    <!-- Characters -->
+    <mat-form-field>
+      <mat-label>Characters</mat-label>
+      <input type="text" required matInput [(ngModel)]='hero.characters'>
+    </mat-form-field>
+    <!-- Characters -->
+    <!-- Publishers -->
+    <mat-form-field>
+      <mat-label>Publishers</mat-label>
+      <mat-select required [(ngModel)]='hero.publisher'>
+        <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">{{ publisher.desc }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <!-- Publishers -->
+    <!-- Image url -->
+    <mat-form-field>
+      <mat-label>Image url</mat-label>
+      <input type="url" required matInput [(ngModel)]='hero.alt_img'>
+    </mat-form-field>
+    <!-- Image url -->
+    <br>
+    <button mat-raised-button color="warn" (click)="save()">
+      <mat-icon>edit</mat-icon>
+      Save
+    </button>
+  </div>
+  <div fxFlex='50'>
+    <img [src]="hero | image" [alt]="hero.alter_ego">
+  </div>
+</div>
