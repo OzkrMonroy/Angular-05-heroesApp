@@ -7,7 +7,12 @@ import { HeroesService } from '../../services/heroes.service';
 @Component({
   selector: 'app-add-hero',
   templateUrl: './add-hero.component.html',
-  styles: [
+  styles: [`
+    img {
+      width: 100%;
+      border-radius: 5px;
+    }
+  `
   ]
 })
 export class AddHeroComponent implements OnInit {
@@ -35,6 +40,9 @@ export class AddHeroComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private heroesServices: HeroesService, private router: Router) { }
 
   ngOnInit(): void {
+    if(!this.router.url.includes('edit')){
+      return
+    }
     this.activatedRoute.params.pipe(
       switchMap(({ id }) => this.heroesServices.getHero(id))
     ).subscribe({
