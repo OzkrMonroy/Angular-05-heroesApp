@@ -13,6 +13,7 @@ import { MaterialModule } from '../material/material.module';
 import { HeroCardComponent } from './components/hero-card/hero-card.component';
 import { ImagePipe } from './pipes/image.pipe';
 import { FormsModule } from '@angular/forms';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 
 
@@ -25,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     ListComponent,
     HeroCardComponent,
     ImagePipe,
+    ConfirmDialogComponent,
   ],
   imports: [
     CommonModule,

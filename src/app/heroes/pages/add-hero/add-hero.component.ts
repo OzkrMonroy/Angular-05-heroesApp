@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 import { Hero, Publisher } from '../../interfaces/heroeRequest';
 import { HeroesService } from '../../services/heroes.service';
 
@@ -38,10 +40,10 @@ export class AddHeroComponent implements OnInit {
 
   hero: Hero = this.defaultValues
 
-  constructor(private activatedRoute: ActivatedRoute, private heroesServices: HeroesService, private router: Router, private _snackBar: MatSnackBar) { }
+  constructor(private activatedRoute: ActivatedRoute, private heroesServices: HeroesService, private router: Router, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    if(!this.router.url.includes('edit')){
+    if (!this.router.url.includes('edit')) {
       return
     }
     this.activatedRoute.params.pipe(
@@ -70,11 +72,21 @@ export class AddHeroComponent implements OnInit {
     }
   }
 
-  delete():void {
-    this.heroesServices.deleteHero(this.hero.id!).subscribe({
-      next: () => {
-        this.showSnackBar('Hero deleted');
-        this.router.navigate(['/heroes'])
+  delete(): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '500px',
+      data: {...this.hero}
+    })
+    dialogRef.afterClosed().subscribe({
+      next: result => {
+        if(result){
+          this.heroesServices.deleteHero(this.hero.id!).subscribe({
+            next: () => {
+              this.showSnackBar('Hero deleted');
+              this.router.navigate(['/heroes'])
+            }
+          })
+        }
       }
     })
   }
