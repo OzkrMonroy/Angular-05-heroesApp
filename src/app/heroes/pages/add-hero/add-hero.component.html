@@ -42,10 +42,17 @@
     </mat-form-field>
     <!-- Image url -->
     <br>
-    <button mat-raised-button color="warn" (click)="save()">
-      <mat-icon>edit</mat-icon>
-      Save
-    </button>
+    <div fxLayout>
+      <button mat-raised-button color="warn" (click)="delete()" *ngIf="hero.id">
+        <mat-icon>delete</mat-icon>
+        Delete
+      </button>
+      <span class="spacer"></span>
+      <button mat-raised-button color="primary" (click)="save()">
+        <mat-icon>edit</mat-icon>
+        Save
+      </button>
+    </div>
   </div>
   <div fxFlex='50'>
     <img [src]="hero | image" [alt]="hero.alter_ego">
